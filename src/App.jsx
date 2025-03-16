@@ -1,7 +1,7 @@
+import { useState } from  'react'
 import Die from './components/Die'
 
 function App() {
-
   const generateAllNewDice = () => {
     let arr = []
     for (let i=0; i<10; i++) {
@@ -14,20 +14,14 @@ function App() {
     //  .map(() => Math.ceil(Math.random() * 6))
   }
 
+  const [numbers, setNumbers] = useState(generateAllNewDice())
+ 
+  const dice = numbers.map(number => <Die value={number} />)
   return (
     <>
       <main>
         <div className="dice-container">
-          <Die value={5}/>
-          <Die value={3}/>
-          <Die value={2}/>
-          <Die value={3}/>
-          <Die value={4}/>
-          <Die value={2}/>
-          <Die value={1}/>
-          <Die value={6}/>
-          <Die value={3}/>
-          <Die value={4}/> 
+          {dice}
         </div>
       </main>
     </>

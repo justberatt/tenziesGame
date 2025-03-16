@@ -10,11 +10,10 @@ export default function App() {
     for (let i=0; i<10; i++) {
       arr.push({
         value: Math.floor(Math.random() * 6 + 1),
-        isHeld: false,
+        isHeld: true,
         id: nanoid()
       })
     }
-    console.log(arr)
     return arr
     // Another way to do the above task
     //return new Array(10)
@@ -22,11 +21,13 @@ export default function App() {
     //  .map(() => Math.ceil(Math.random() * 6))
   }
 
+
   function handleRollClick() {
     setDice(generateAllNewDice());
   }
  
-  const diceElements = dice.map(dieObj => <Die key={dieObj.id} value={dieObj.value} />)
+  const diceElements = dice.map(dieObj => <Die key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
+
   return (
     <>
       <main>

@@ -1,6 +1,6 @@
 *, *::before, *::after {
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: Karla, sans-serif;
 }
 
 body {
@@ -28,6 +28,7 @@ main {
   border-radius: 10px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -47,5 +48,16 @@ main {
   font-weight: 700;
   width: 50px;
   height: 50px;
+  cursor: pointer;
+}
+
+.roll-btn {
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background-color: purple;
+  color: white;
+  padding: .5em 1.75em;
+  margin-top: 2em;
   cursor: pointer;
 }

@@ -2,12 +2,15 @@ import { useState } from  'react'
 import Die from './components/Die'
 
 export default function App() {
-  const [numbers, setNumbers] = useState(generateAllNewDice())
-
+  const [dice, setDice] = useState(generateAllNewDice())
+  
   function generateAllNewDice() {
     let arr = []
     for (let i=0; i<10; i++) {
-      arr.push(Math.floor(Math.random() * 6 + 1))
+      arr.push({
+        value: Math.floor(Math.random() * 6 + 1),
+        isHeld: false,
+      })
     }
     return arr
     // Another way to do the above task
@@ -17,15 +20,15 @@ export default function App() {
   }
 
   function handleRollClick() {
-    setNumbers(generateAllNewDice());
+    setDice(generateAllNewDice());
   }
  
-  const dice = numbers.map(number => <Die value={number} />)
+  const diceElements = dice.map(dieObj => <Die value={dieObj.value} />)
   return (
     <>
       <main>
         <div className="dice-container">
-            {dice}
+            {diceElements}
         </div>
         <button
           onClick={handleRollClick}

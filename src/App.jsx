@@ -15,12 +15,18 @@ export default function App() {
       }))
   }
 
+  function hold(id) {
+    console.log(id)
+  } 
+
 
   function handleRollClick() {
     setDice(generateAllNewDice());
   }
  
-  const diceElements = dice.map(dieObj => <Die key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
+  const diceElements = dice.map(dieObj => (
+    <Die onClick={hold} id={dieObj.id} key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
+  )
 
   return (
     <>

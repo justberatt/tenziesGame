@@ -6,19 +6,13 @@ export default function App() {
   const [dice, setDice] = useState(generateAllNewDice())
   
   function generateAllNewDice() {
-    let arr = []
-    for (let i=0; i<10; i++) {
-      arr.push({
-        value: Math.floor(Math.random() * 6 + 1),
-        isHeld: true,
+    return new Array(10)
+      .fill(0)
+      .map(() => ({
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
         id: nanoid()
-      })
-    }
-    return arr
-    // Another way to do the above task
-    //return new Array(10)
-    // .fill(0)
-    //  .map(() => Math.ceil(Math.random() * 6))
+      }))
   }
 
 

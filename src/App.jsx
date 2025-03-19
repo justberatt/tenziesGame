@@ -30,7 +30,7 @@ export default function App() {
   }
  
   const diceElements = dice.map(dieObj => (
-    <Die onClick={hold} id={dieObj.id} key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
+    <Die hold={hold} id={dieObj.id} key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
   )
 
   return (

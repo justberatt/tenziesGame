@@ -26,8 +26,11 @@ export default function App() {
 
 
   function handleRollClick() {
-    setDice(generateAllNewDice());
-  }
+    const newDiceArr = generateAllNewDice()
+        setDice(oldDice => oldDice.map((die, i) => {
+            return die.isHeld ? die : newDiceArr[i]  // Use i instead of die.id
+        }))
+}
  
   const diceElements = dice.map(dieObj => (
     <Die hold={hold} id={dieObj.id} key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)

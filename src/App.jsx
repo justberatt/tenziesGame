@@ -15,8 +15,13 @@ export default function App() {
       }))
   }
 
+  // the hold() function updates the state of game by toggling the 
+  // isHeld property of a specific die
+  // It takes the 'id' a a parameter (id of a specific dice) so that it knows which die to change
   function hold(id) {
-    console.log(id)
+    setDice(prevDice => prevDice.map(die => {
+      return die.id === id ? { ...die, isHeld: !die.isHeld } : die
+    }))
   } 
 
 

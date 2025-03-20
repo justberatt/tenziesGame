@@ -7,9 +7,11 @@ export default function App() {
   const [dice, setDice] = useState(() => generateAllNewDice()) // Added lazy state initialization
   const newGameButtonRef = useRef(null) // In React the prefered way of accessing a DOM Node is by using ref. It is like a querySelector in JavaSacript
 
+  // Automatically calling the .focus() on a DOM element when the game is won requires us to synchronize the local
+  // 'gameWon' variable with an external system (the DOM). For that, we need the useEffect().
   useEffect(() => {
     gameWon && newGameButtonRef.current.focus()
-  })
+  }, [gameWon])
 
   const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
   const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held
@@ -22,7 +24,7 @@ export default function App() {
     return new Array(10)
       .fill(0)
       .map(() => ({
-        value: 1,
+        value: Math.ceil(Math.random() * 6),
         isHeld: false,
         id: nanoid()
       }))

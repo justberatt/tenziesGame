@@ -4,6 +4,13 @@ import { nanoid } from 'nanoid'
 
 export default function App() {
   const [dice, setDice] = useState(generateAllNewDice())
+
+  const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
+  const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held
+
+  const allValuesMatch = values.every(value => value === values[0]); // check if all values are the same
+
+  console.log(allValuesMatch && areAllHeld ? 'TENZIES' : 'not tenzies'); // if both conditions are true, log 'TENZIES' to the console, otherwise 'not tenzies'
   
   function generateAllNewDice() {
     return new Array(10)
@@ -40,6 +47,8 @@ export default function App() {
   return (
     <>
       <main>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
         <div className="dice-container">
             {diceElements}
         </div>

@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import Confetti from 'react-confetti'
 
 export default function App() {
-  const [dice, setDice] = useState(generateAllNewDice())
+  const [dice, setDice] = useState(() => generateAllNewDice()) // Added lazy state initialization
 
   const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
   const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held

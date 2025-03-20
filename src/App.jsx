@@ -1,10 +1,15 @@
-import { useState } from  'react'
+import { useState, useRef, useEffect } from  'react'
 import Die from './components/Die'
 import { nanoid } from 'nanoid'
 import Confetti from 'react-confetti'
 
 export default function App() {
   const [dice, setDice] = useState(() => generateAllNewDice()) // Added lazy state initialization
+  const newGameButtonRef = useRef(null) // In React the prefered way of accessing a DOM Node is by using ref. It is like a querySelector in JavaSacript
+
+  useEffect(() => {
+    gameWon && newGameButtonRef.current.focus()
+  })
 
   const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
   const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held
@@ -17,7 +22,7 @@ export default function App() {
     return new Array(10)
       .fill(0)
       .map(() => ({
-        value: Math.ceil(Math.random() * 6),
+        value: 1,
         isHeld: false,
         id: nanoid()
       }))
@@ -57,6 +62,7 @@ export default function App() {
           {diceElements}
       </div>
       <button
+        ref={newGameButtonRef}
         onClick={ gameWon ? handleNewGameClick : handleRollClick}
         className="roll-btn">
         {gameWon ? "New Game" : "Roll"}

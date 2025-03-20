@@ -4,13 +4,14 @@ import { nanoid } from 'nanoid'
 
 export default function App() {
   const [dice, setDice] = useState(generateAllNewDice())
+  let buttonText = 'Roll'
 
   const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
   const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held
 
   const allValuesMatch = values.every(value => value === values[0]); // check if all values are the same
 
-  console.log(allValuesMatch && areAllHeld ? 'TENZIES' : 'not tenzies'); // if both conditions are true, log 'TENZIES' to the console, otherwise 'not tenzies'
+  const gameWon = allValuesMatch && areAllHeld //This will ensure the gameWon value stays false until are conditions are met
   
   function generateAllNewDice() {
     return new Array(10)
@@ -55,7 +56,7 @@ export default function App() {
         <button
           onClick={handleRollClick}
           className="roll-btn">
-          Roll
+          {buttonText}
         </button>
       </main>
     </>

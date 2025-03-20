@@ -39,7 +39,11 @@ export default function App() {
             die :
             { ...die, value: Math.ceil(Math.random() * 6) }
     ))
-}
+  }
+
+  function handleNewGameClick() {
+    setDice(generateAllNewDice)
+  }
  
   const diceElements = dice.map(dieObj => (
     <Die hold={hold} id={dieObj.id} key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />)
@@ -54,7 +58,7 @@ export default function App() {
             {diceElements}
         </div>
         <button
-          onClick={handleRollClick}
+          onClick={ gameWon ? handleNewGameClick : handleRollClick}
           className="roll-btn">
           {gameWon ? "New Game" : "Roll"}
         </button>

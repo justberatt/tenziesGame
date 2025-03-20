@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid'
 
 export default function App() {
   const [dice, setDice] = useState(generateAllNewDice())
-  let buttonText = 'Roll'
 
   const values = dice.map(die => die.value); // returns a new array with the values and assigns it to the 'values' variable
   const areAllHeld = dice.every(die => die.isHeld); // checks if all dice are held
@@ -56,7 +55,7 @@ export default function App() {
         <button
           onClick={handleRollClick}
           className="roll-btn">
-          {buttonText}
+          {gameWon ? "New Game" : "Roll"}
         </button>
       </main>
     </>
